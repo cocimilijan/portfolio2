@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Lovric - Web Developer</title>
+    <meta name="description" content="Portfolio David Lovric - Profesionalni Web Developer. Kreiranje modernih web rešenja i aplikacija.">
+    <meta name="author" content="David Lovric">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --prelaz-glatki: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            --pozadina: rgba(255, 255, 255, 1);
+            --tekst: rgba(45, 55, 72, 1);
+            --kartica: rgba(249, 250, 251, 1);
+            --kartica-tekst: rgba(45, 55, 72, 1);
+            --primarna: rgba(16, 185, 129, 1);
+            --primarna-tekst: rgba(255, 255, 255, 1);
+            --sekundarna: rgba(236, 253, 245, 1);
+            --sekundarna-tekst: rgba(6, 95, 70, 1);
+            --prigusena: rgba(243, 244, 246, 1);
+            --prigusena-tekst: rgba(107, 114, 128, 1);
+            --naglasena: rgba(5, 150, 105, 1);
+            --ivica: rgba(229, 231, 235, 1);
+            --gradijent-hero: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+            --senka-velika: 0 10px 40px -10px rgba(16, 185, 129, 0.2);
+        }
+        
+        body.tamna {
+            --pozadina: rgba(17, 24, 39, 1);
+            --tekst: rgba(236, 253, 245, 1);
+            --kartica: rgba(31, 41, 55, 1);
+            --kartica-tekst: rgba(236, 253, 245, 1);
+            --primarna: rgba(52, 211, 153, 1);
+            --primarna-tekst: rgba(17, 24, 39, 1);
+            --sekundarna: rgba(31, 41, 55, 1);
+            --sekundarna-tekst: rgba(167, 243, 208, 1);
+            --prigusena: rgba(31, 41, 55, 1);
+            --prigusena-tekst: rgba(156, 163, 175, 1);
+            --naglasena: rgba(16, 185, 129, 1);
+            --ivica: rgba(55, 65, 81, 1);
+            --gradijent-hero: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(16, 185, 129, 0.08));
+            --senka-velika: 0 10px 40px -10px rgba(52, 211, 153, 0.3);
+        }
+        
+        body {
+            background-color: var(--pozadina);
+            color: var(--tekst);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+        
+        .pozadina { background-color: var(--pozadina); }
+        .kartica-pozadina { background-color: var(--kartica); }
+        .primarna-pozadina { background-color: var(--primarna); }
+        .sekundarna-pozadina { background-color: var(--sekundarna); }
+        .prigusena-pozadina { background-color: var(--prigusena); }
+        .naglasena-pozadina { background-color: var(--naglasena); }
+        
+        .boja-teksta { color: var(--tekst); }
+        .boja-kartice { color: var(--kartica-tekst); }
+        .boja-primarne { color: var(--primarna); }
+        .boja-primarne-tekst { color: var(--primarna-tekst); }
+        .boja-prigusene { color: var(--prigusena-tekst); }
+        
+        .boja-ivice { border-color: var(--ivica); }
+        
+        .hero-gradijent {
+            background: var(--gradijent-hero);
+        }
+        
+        .senka-prilagodjena {
+            box-shadow: var(--senka-velika);
+        }
+        
+        .kartica {
+            background-color: var(--kartica);
+            color: var(--kartica-tekst);
+            border: 2px solid var(--ivica);
+            transition: var(--prelaz-glatki);
+        }
+        
+        .kartica:hover {
+            transform: scale(1.02);
+        }
+        
+        .dugme {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: var(--prelaz-glatki);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dugme-primarno {
+            background-color: var(--primarna);
+            color: var(--primarna-tekst);
+        }
+        
+        .dugme-primarno:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        
+        .dugme-kontura {
+            background-color: transparent;
+            border: 2px solid var(--ivica);
+            color: var(--tekst);
+        }
+        
+        .dugme-kontura:hover {
+            background-color: var(--prigusena);
+            border-color: var(--primarna);
+            color: var(--primarna);
+        }
+        
+        .navigacija-skrolovana {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--ivica);
+        }
+        
+        body.tamna .navigacija-skrolovana {
+            background-color: rgba(17, 24, 39, 0.95);
+        }
+        
+        .znacka {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            background-color: var(--sekundarna);
+            color: var(--sekundarna-tekst);
+        }
+        
+        .unos {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid var(--ivica);
+            border-radius: 0.5rem;
+            background-color: var(--pozadina);
+            color: var(--tekst);
+            transition: var(--prelaz-glatki);
+        }
+        
+        .unos:focus {
+            outline: none;
+            border-color: var(--primarna);
+        }
+        
+        .tekstualno-polje {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid var(--ivica);
+            border-radius: 0.5rem;
+            background-color: var(--pozadina);
+            color: var(--tekst);
+            min-height: 150px;
+            resize: vertical;
+            transition: var(--prelaz-glatki);
+        }
+        
+        .tekstualno-polje:focus {
+            outline: none;
+            border-color: var(--primarna);
+        }
+        
+        #mobilni-meni {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        #mobilni-meni.otvoren {
+            max-height: 300px;
+        }
+        
+        @keyframes pojavljivanje {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animacija-pojavljivanje {
+            animation: pojavljivanje 1s ease-out;
+        }
+        
+        .kartica-projekta {
+            transition: var(--prelaz-glatki);
+        }
+        
+        .kartica-projekta:hover {
+            transform: scale(1.03);
+            box-shadow: var(--senka-velika);
+        }
+        
+        .tehnologija-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--primarna);
+            border-radius: 9999px;
+        }
+        
+        body.tamna .tehnologija-tag {
+            background-color: rgba(52, 211, 153, 0.15);
+        }
+
+        .nav-link {
+            transition: var(--prelaz-glatki);
+        }
+
+        .nav-link:hover {
+            color: var(--primarna);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigacija" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <button class="text-2xl font-bold nav-link">
+                    MC
+                </button>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#o-meni" class="nav-link font-medium">O Meni</a>
+                    <a href="#vestine" class="nav-link font-medium">Veštine</a>
+                    <a href="#projekti" class="nav-link font-medium">Projekti</a>
+                    <a href="#kontakt" class="nav-link font-medium">Kontakt</a>
+                    <button id="dugme-tema" class="dugme-kontura p-2 rounded-full" aria-label="Promeni temu">
+                        <i data-lucide="moon" class="w-5 h-5" id="ikona-tema"></i>
+                    </button>
+                </div>
+
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="dugme-tema-mobilni" class="dugme-kontura p-2 rounded-full" aria-label="Promeni temu">
+                        <i data-lucide="moon" class="w-5 h-5" id="ikona-tema-mobilni"></i>
+                    </button>
+                    <button id="dugme-mobilni-meni" class="dugme-kontura p-2" aria-label="Otvori meni">
+                        <i data-lucide="menu" class="w-6 h-6" id="ikona-meni"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobilni-meni" class="md:hidden">
+                <div class="pt-4 pb-2 space-y-2">
+                    <a href="#o-meni" class="block px-4 py-2 rounded-lg nav-link font-medium">O Meni</a>
+                    <a href="#vestine" class="block px-4 py-2 rounded-lg nav-link font-medium">Veštine</a>
+                    <a href="#projekti" class="block px-4 py-2 rounded-lg nav-link font-medium">Projekti</a>
+                    <a href="#kontakt" class="block px-4 py-2 rounded-lg nav-link font-medium">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
+        <div class="absolute inset-0 hero-gradijent -z-10"></div>
+        
+        <div class="max-w-4xl mx-auto text-center space-y-8 animacija-pojavljivanje">
+            <div class="space-y-4">
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight">
+                    Milijan Coco
+                </h1>
+                <p class="text-2xl md:text-3xl boja-prigusene">
+                    Web Developer & Kreativni Programer
+                </p>
+            </div>
+
+            <p class="text-lg md:text-xl boja-prigusene max-w-2xl mx-auto leading-relaxed">
+                Stvaram inovativna digitalna rešenja koja kombinuju funkcionalnost sa elegantnim dizajnom i donose vrednost korisnicima.
+            </p>
+
+            <div class="flex flex-wrap gap-4 justify-center pt-4">
+                <a href="#kontakt" class="dugme dugme-primarno">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    Kontaktirajte Me
+                </a>
+                <a href="#" class="dugme dugme-kontura">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    GitHub
+                </a>
+                <a href="#" class="dugme dugme-kontura">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="o-meni" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                O Meni
+            </h2>
+            
+            <div class="kartica p-8 md:p-12 senka-prilagodjena rounded-xl">
+                <div class="space-y-6 text-lg leading-relaxed">
+                    <p>
+                        Zdravo! Ja sam David Lovrić, posvećen web developer sa strašću prema stvaranju 
+                        digitalnih iskustava koja oduševljavaju korisnike.
+                    </p>
+                    <p>
+                        Moja ekspertiza obuhvata razvoj naprednih web aplikacija korišćenjem savremenih 
+                        tehnologija i pristupa. Verujem u snagu dobrog koda koji ne samo da funkcioniše, 
+                        već je i održiv, skalabilan i elegantan.
+                    </p>
+                    <p>
+                        Konstantno se usavršavam i proširujem svoje znanje kako bih bio u koraku sa 
+                        brzim razvojem web tehnologija i mogao da pružim rešenja koja su u skladu sa 
+                        trenutnim standardima industrije.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vestine" class="py-20 px-4" style="background-color: rgba(243, 244, 246, 0.3);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                Tehnološke Veštine
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="kartica p-6 senka-prilagodjena rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-4 boja-primarne">
+                        Frontend Razvoj
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="znacka">React</span>
+                        <span class="znacka">Vue.js</span>
+                        <span class="znacka">TypeScript</span>
+                        <span class="znacka">JavaScript</span>
+                        <span class="znacka">Tailwind CSS</span>
+                        <span class="znacka">SASS/SCSS</span>
+                    </div>
+                </div>
+
+                <div class="kartica p-6 senka-prilagodjena rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-4 boja-primarne">
+                        Backend Razvoj
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="znacka">Node.js</span>
+                        <span class="znacka">Express</span>
+                        <span class="znacka">Python</span>
+                        <span class="znacka">Django</span>
+                        <span class="znacka">PostgreSQL</span>
+                        <span class="znacka">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="kartica p-6 senka-prilagodjena rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-4 boja-primarne">
+                        Alati i Tehnologije
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="znacka">Git</span>
+                        <span class="znacka">Docker</span>
+                        <span class="znacka">Webpack</span>
+                        <span class="znacka">Jest</span>
+                        <span class="znacka">Figma</span>
+                        <span class="znacka">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projekti" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                Moji Projekti
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="kartica kartica-projekta rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">
+                            Web Shop Platforma
+                        </h3>
+                        <p class="boja-prigusene mb-4">
+                            Napredna platforma za online trgovinu sa integrisanim sistemom plaćanja, upravljanjem zalihama i analitikom prodaje.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tehnologija-tag">React</span>
+                            <span class="tehnologija-tag">Node.js</span>
+                            <span class="tehnologija-tag">MongoDB</span>
+                            <span class="tehnologija-tag">Stripe</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="#" class="dugme dugme-kontura text-sm py-2 px-4">
+                                <i data-lucide="github" class="w-3 h-3"></i>
+                                Kod
+                            </a>
+                            <a href="#" class="dugme dugme-primarno text-sm py-2 px-4">
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                                Pogledaj
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kartica kartica-projekta rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">
+                            Organizator Zadataka
+                        </h3>
+                        <p class="boja-prigusene mb-4">
+                            Intuitivna aplikacija za organizaciju poslova sa drag-and-drop funkcionalnostima i timskom saradnjom u realnom vremenu.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tehnologija-tag">Vue.js</span>
+                            <span class="tehnologija-tag">TypeScript</span>
+                            <span class="tehnologija-tag">Firebase</span>
+                            <span class="tehnologija-tag">Tailwind</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="#" class="dugme dugme-kontura text-sm py-2 px-4">
+                                <i data-lucide="github" class="w-3 h-3"></i>
+                                Kod
+                            </a>
+                            <a href="#" class="dugme dugme-primarno text-sm py-2 px-4">
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                                Pogledaj
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kartica kartica-projekta rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">
+                            Kreator Web Stranica
+                        </h3>
+                        <p class="boja-prigusene mb-4">
+                            Vizuelni editor za izradu profesionalnih web stranica bez potrebe za programiranjem, sa gotovim template-ima.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tehnologija-tag">React</span>
+                            <span class="tehnologija-tag">Python</span>
+                            <span class="tehnologija-tag">PostgreSQL</span>
+                            <span class="tehnologija-tag">AWS</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="#" class="dugme dugme-kontura text-sm py-2 px-4">
+                                <i data-lucide="github" class="w-3 h-3"></i>
+                                Kod
+                            </a>
+                            <a href="#" class="dugme dugme-primarno text-sm py-2 px-4">
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                                Pogledaj
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kartica kartica-projekta rounded-xl overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">
+                            Analitički Dashboard
+                        </h3>
+                        <p class="boja-prigusene mb-4">
+                            Sveobuhvatna platforma za praćenje i analizu ključnih metrika poslovanja sa interaktivnim graficima i izveštajima.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tehnologija-tag">Next.js</span>
+                            <span class="tehnologija-tag">Chart.js</span>
+                            <span class="tehnologija-tag">Express</span>
+                            <span class="tehnologija-tag">Redis</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="#" class="dugme dugme-kontura text-sm py-2 px-4">
+                                <i data-lucide="github" class="w-3 h-3"></i>
+                                Kod
+                            </a>
+                            <a href="#" class="dugme dugme-primarno text-sm py-2 px-4">
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                                Pogledaj
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="py-20 px-4" style="background-color: rgba(243, 244, 246, 0.3);">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">
+                Kontakt Informacije
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold mb-6">Kontaktirajte Me</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 rounded-full boja-primarne" style="background-color: rgba(16, 185, 129, 0.1);">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email Adresa</p>
+                                <p class="boja-prigusene">cocimilijan@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 rounded-full boja-primarne" style="background-color: rgba(16, 185, 129, 0.1);">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Telefon</p>
+                                <p class="boja-prigusene">192</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 rounded-full boja-primarne" style="background-color: rgba(16, 185, 129, 0.1);">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Lokacija</p>
+                                <p class="boja-prigusene">Beograd, Srbija</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="kartica p-6 senka-prilagodjena rounded-xl">
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Vaše Ime i Prezime" class="unos" required>
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email Adresa" class="unos" required>
+                        </div>
+                        <div>
+                            <textarea placeholder="Vaša Poruka" class="tekstualno-polje" required></textarea>
+                        </div>
+                        <button type="submit" class="dugme dugme-primarno w-full py-3">
+                            Pošalji Poruku
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-4 boja-ivice" style="border-top: 1px solid var(--ivica);">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="boja-prigusene">
+                    © <span id="godina"></span> Milijan Coco. Sva prava zadržana.
+                </p>
+                
+                <div class="flex gap-4">
+                    <a href="#" class="p-2 rounded-full boja-prigusene nav-link" aria-label="GitHub" style="transition: var(--prelaz-glatki);">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="p-2 rounded-full boja-prigusene nav-link" aria-label="LinkedIn" style="transition: var(--prelaz-glatki);">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="p-2 rounded-full boja-prigusene nav-link" aria-label="Email" style="transition: var(--prelaz-glatki);">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        document.getElementById('godina').textContent = new Date().getFullYear();
+
+        const dugmeTema = document.getElementById('dugme-tema');
+        const dugmeTemaMobilni = document.getElementById('dugme-tema-mobilni');
+        const ikonaTema = document.getElementById('ikona-tema');
+        const ikonaTemaMobilni = document.getElementById('ikona-tema-mobilni');
+
+        function promeniTemu() {
+            document.body.classList.toggle('tamna');
+            
+            if (document.body.classList.contains('tamna')) {
+                ikonaTema.setAttribute('data-lucide', 'sun');
+                ikonaTemaMobilni.setAttribute('data-lucide', 'sun');
+            } else {
+                ikonaTema.setAttribute('data-lucide', 'moon');
+                ikonaTemaMobilni.setAttribute('data-lucide', 'moon');
+            }
+            
+            lucide.createIcons();
+        }
+
+        dugmeTema.addEventListener('click', promeniTemu);
+        dugmeTemaMobilni.addEventListener('click', promeniTemu);
+    </script>
+</body>
+</html>
